@@ -5,6 +5,7 @@ import Login from './Auth/login'
 import Home from './Home/home'
 import Signup from './Auth/signup'
 import { FirebaseAppProvider } from 'reactfire';
+import Carousel from './Carousel/carousel';
 
 
 const firebaseConfig = {
@@ -25,6 +26,7 @@ function App() {
         <Switch>
           <Route path='/login' component={Login}/>
           <Route path='/signup' component={Signup}/>
+          <Route path='/carousel' component={Carousel}/>
           <Route path='/' component={Home}/>
         </Switch>
       </BrowserRouter>
