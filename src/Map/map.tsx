@@ -1,5 +1,8 @@
 import React, {useState} from 'react'
 import {GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faStreetView} from '@fortawesome/free-solid-svg-icons'
+
 
 interface Coords {
   lat: number,
@@ -7,6 +10,7 @@ interface Coords {
 }
 
 interface Player {
+  id: number,
   location: Coords
 }
 
@@ -16,11 +20,13 @@ interface Mon {
 
 interface MapProps {
   center: Coords,
-  players: Player[],
+  player: Player,
+  other_players: Player[],
   mons: Mon[]
 }
 
 const GameMap = (props : MapProps)=>{
+  console.log(props.other_players)
   const [ selected, setSelected ] = useState({});
   const [ currentPosition, setCurrentPosition ] = useState({});
 
@@ -31,7 +37,7 @@ const GameMap = (props : MapProps)=>{
 
   const mapStyles = () => {
     return {
-      width: "1000px",
+      width: "100%",
       height: "1000px", 
       borderRadius: "10px",
     }
@@ -49,18 +55,22 @@ const GameMap = (props : MapProps)=>{
           zoom={13}
           center={props.center}
         >
-          {/*
-            locations ?
-            locations.map(location => {
+          <Marker
+            position={props.player.location}
+            icon={<FontAwesomeIcon icon={faStreetView}/>}
+          />
+          {
+            props.other_players ?
+            props.other_players.map((other_player)=>{
               return (
-              <Marker 
-              key={location.attributes.OBJECTID}
-              position={{lat: location.geometry.y, lng: location.geometry.x}}
-              onClick={() => onSelect(location)}
+              <Marker
+                key = {other_player.id}
+                position={other_player.location}
               />
               )
-            }): console.log('locations fail')
-          */}
+              
+            }) : console.log("other players did not load")
+          }
         </GoogleMap>
       </LoadScript>
     )
