@@ -4,6 +4,10 @@ import './home.css'
 import {GetUser, setUser} from '../Shared/user.service'
 // import firebase from 'firebase/app'
 // import {useFirestore} from 'reactfire'
+import GameMap from '../Map/map'
+
+const test_players = [{location: {lat: 29.65, lng: -82.3}}]
+
 function Home() {
   // const user= useFirestore().collection('users').doc('testuser')
   // console.log(user)
@@ -14,6 +18,7 @@ function Home() {
     <div>
     Home!
     <h1>Hi</h1>
+    <GameMap center={{lat: 29.65, lng: -82.3}} players={test_players} mons = {[]}/>
     </div>
 
   )
