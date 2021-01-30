@@ -4,8 +4,6 @@ import './home.css'
 import Navigation from '../Navigation/navigation'
 //import firebase from 'firebase/app'
 //import {useFirestore} from 'reactfire'
-<<<<<<< HEAD
-=======
 import './home.css'
 import {GetUser, SetUser, CaptureGator} from '../Shared/user.service'
 import firebase from 'firebase/app'
@@ -17,7 +15,6 @@ import { IGator } from '../Shared/gator.interface'
 
 const test_players = {id:0, location: {lat: 29.65, lng: -82.3}}
 const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, location: {lat: 29.6, lng: -82.3}}]
->>>>>>> 8600e1614b18211de7524ac9a31259da19493d2a
 
 function Home() {
   
