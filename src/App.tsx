@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './Auth/login'
 import Home from './Home/home'
+import Signup from './Auth/signup'
 import { FirebaseAppProvider } from 'reactfire';
 
 
@@ -23,6 +24,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path='/login' component={Login}/>
+          <Route path='/signup' component={Signup}/>
           <Route path='/' component={Home}/>
         </Switch>
       </BrowserRouter>

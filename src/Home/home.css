@@ -3,6 +3,38 @@
 	src: url(CandyshopRegular-nOBO.otf);
 }
 
-h1{
+.home-name {
 	font-family: candyshop;
+	color: #aa8976;
+	font-height: 2.5rem;
+	margin-top: 0;
+	padding: 15% 7% 3%;
+	font-size: 600%;
+}
+
+
+.GameMap{
+	height: 600px;
+    margin-right: 3%;
+    padding-right: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.home-descrip {
+	padding: 3% 7%;
+	font-size: 200%;
+	color: #70af85;
+
+}
+
+.home-img {
+	max-width: 80%;
+  height: auto;
+}
+
+
+#home-page {
+	background-color: #c6ebc9;
+
 }
