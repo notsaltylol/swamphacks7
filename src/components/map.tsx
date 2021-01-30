@@ -1,5 +1,4 @@
 import React from 'react'
-/*
 import {GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api'
 
 
@@ -68,7 +67,6 @@ const GameMap = ()=>{
 }
 
 export default GameMap
-*/
 
 
 
