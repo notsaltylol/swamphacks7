@@ -1,15 +1,12 @@
 import React from 'react'
 import './home.css'
-import GameMap from '../Map/map'
-
-const test_players = [{location: {lat: 29.65, lng: -82.3}}]
+// import '../Navbar/navigation.tsx'
 
 function Home() {
   return (
-    <div>
-    Home!
-    <h1>Hi</h1>
-    <GameMap center={{lat: 29.65, lng: -82.3}} players={test_players} mons = {[]}/>
+    <div id="home-page">
+	    <h1>Gator-Mon!</h1>
+	    <img src="../../gator_cartoon.png" alt="gator_cartoon"></img>
     </div>
 
   )
