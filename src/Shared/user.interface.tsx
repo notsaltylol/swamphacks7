@@ -5,5 +5,5 @@ export interface IUser{
         lat: number,
         long: number
     },
-    capturedGators? : IGator[]
+    capturedGators : string[]
 }
