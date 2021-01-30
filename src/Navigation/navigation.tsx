@@ -17,6 +17,9 @@ function Navigation() {
 		      <li className="nav-item active">
 		        <a className="nav-link" href="Login">Login <span className="sr-only">(current)</span></a>
 		      </li>
+		      <li className="nav-item active">
+		        <a className="nav-link" href="Signup">SignUp <span className="sr-only">(current)</span></a>
+		      </li>
 		      <li className="nav-item">
 		        <a className="nav-link" href="">Swamp</a>
 		      </li>
