@@ -3,7 +3,11 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './Auth/login'
 import Home from './Home/home'
+<<<<<<< HEAD
 import GameMap from './Map/map'
+=======
+import Signup from './Auth/signup'
+>>>>>>> 8600e1614b18211de7524ac9a31259da19493d2a
 import { FirebaseAppProvider } from 'reactfire';
 
 
@@ -28,7 +32,11 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path='/login' component={Login}/>
+<<<<<<< HEAD
           <Route path='/map' component={GameMap}/>
+=======
+          <Route path='/signup' component={Signup}/>
+>>>>>>> 8600e1614b18211de7524ac9a31259da19493d2a
           <Route path='/' component={Home}/>
         </Switch>
       </BrowserRouter>

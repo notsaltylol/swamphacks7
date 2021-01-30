@@ -3,12 +3,21 @@
 	src: url(../Home/CandyshopRegular-nOBO.otf);
 }
 
+.left {
+	text-align: center;
+	padding-top: 10%;
+}
+
+.right {
+	text-align: center;
+}
+
 .login-title {
 	font-family: candyshop;
 	color: #70af85;
 	font-height: 2.5rem;
 	margin-top: 0;
-	padding: 15% 7% 3%;
+	padding: 0% 7% 3%;
 	font-size: 400%;
 }
 
@@ -19,7 +28,7 @@
 .login-img {
 	size: 80%;
 	width: 80%;
-	padding: 5% 15%;
+	padding: 0% 15%;
 }
 
 .login-form {

@@ -8,12 +8,12 @@ function Login() {
     	<Navigation />
 	    
 	    <div className="row">
-	    	<div className="col">
+	    	<div className="col left">
+	    		<img className="login-img" src="../../login-gator.png" alt="login-gator" />
 	    		<h1 className="login-title">Gator-Mon!</h1>
-	    		<img className="login-img" src="../../login_gator.png" alt="login-gator" />
 	    	</div>
 
-	    	<div className="col">
+	    	<div className="col right">
 	    		<form className="login-form">
 		            <h3>Log in</h3>
 
