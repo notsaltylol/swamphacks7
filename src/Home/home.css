@@ -6,3 +6,13 @@
 h1{
 	font-family: candyshop;
 }
+
+
+.GameMap{
+	height: 600px;
+    margin-right: 3%;
+    padding-right: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+ 
+}

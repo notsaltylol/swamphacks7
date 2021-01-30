@@ -38,8 +38,8 @@ const GameMap = (props : MapProps)=>{
   const mapStyles = () => {
     return {
       width: "100%",
-      height: "1000px", 
-      borderRadius: "10px",
+      height: "100%", 
+      borderRadius: "20px",
     }
   }
 
