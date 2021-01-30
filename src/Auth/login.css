@@ -1,0 +1,31 @@
+@font-face {
+	font-family: candyshop;
+	src: url(../Home/CandyshopRegular-nOBO.otf);
+}
+
+.login-title {
+	font-family: candyshop;
+	color: #70af85;
+	font-height: 2.5rem;
+	margin-top: 0;
+	padding: 15% 7% 3%;
+	font-size: 400%;
+}
+
+.login-page {
+	background-color: #c6ebc9;
+}
+
+.login-img {
+	size: 80%;
+	width: 80%;
+	padding: 5% 15%;
+}
+
+.login-form {
+	padding: 25% 6%;
+}
+
+.login-page .row{
+	padding-right: 0;
+}
