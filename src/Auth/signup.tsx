@@ -9,7 +9,6 @@ function Signup() {
 	    
 	    <div className="row">
 	    	<div className="col left">
-	    		
 	    		<img className="login-img" src="../../login-gator.png" alt="login-gator" />
 	    		<h1 className="login-title">Gator-Mon!</h1>
 	    	</div>
