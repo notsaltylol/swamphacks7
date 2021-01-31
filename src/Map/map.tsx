@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
-import {GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api'
+import {GoogleMap, LoadScript, Marker, InfoWindow, Data} from '@react-google-maps/api'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faStreetView} from '@fortawesome/free-solid-svg-icons'
 import './map.css'
+import { textSpanEnd } from 'typescript'
 
 const test_player = {id:0, location: {lat: 29.65, lng: -82.3}}
 const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, location: {lat: 29.6, lng: -82.3}}]
+let test_mons : Array<Mon>;
+test_mons = [];
 
 interface Coords {
   lat: number,
@@ -18,6 +21,8 @@ interface Player {
 }
 
 interface Mon {
+  id : number
+  img : string
   location: Coords
 }
 
@@ -29,21 +34,33 @@ interface MapProps {
 }
 
 const GameMap = ()=>{
-  const [props, setProps] = useState({center: test_player.location, player: test_player, other_players: test_other_players, mons: []});
+  const [props, setProps] = useState({center: test_player.location, player: test_player, other_players: test_other_players, mons: test_mons});
   
   const [ selected, setSelected ] = useState({});
-  const [ currentPosition, setCurrentPosition ] = useState({});
+  const [ currentPosition, setCurrentPosition ] = useState<Coords>(test_player.location);
 
+  const action = () =>{
+    if(getLocation()){
+      spawnMon(currentPosition)
+    }
+  }
 
-  const spawnmons = (reference_coords : Coords) => {
-    const range = 0.2;
-    let newMon : Mon = {location:{
-      lat: reference_coords.lat + Math.random() - range/2,
-      lng: reference_coords.lng + Math.random() - range/2
+  const spawnMon = (reference_coords : Coords) => {
+    const species = 2;
+    const range = 0.02;
+    var d = new Date()
+    var time = d.getTime()
+    const newMon : Mon = {id: time, 
+      img: 'gator' + Math.ceil(Math.random() * species).toString() + '.png',
+      location:{
+        lat: reference_coords.lat + Math.random()*range - range/2,
+        lng: reference_coords.lng + Math.random()*range - range/2
       }
     }
-    let newprops = [...props.mons,newMon]
-    setProps(newprops as any);
+    console.log(newMon.location.lat - currentPosition.lat)
+    console.log(newMon.location.lng - currentPosition.lng)
+    props.mons.push(newMon)
+    setProps(props);
   }
   
   async function getLocation() {
@@ -70,7 +87,7 @@ const GameMap = ()=>{
 
   return(
     <div className="GameMapStyles">
-      <button onClick={getLocation}>get location</button>
+      <button onClick={action}>get location</button>
       <LoadScript
         id="script-loader"
         googleMapsApiKey='AIzaSyDDzAGhmk2jio6ei6HlRHtKW6MW0lHx6Lc'
@@ -96,6 +113,25 @@ const GameMap = ()=>{
               )
               
             }) : console.log("other players did not load")
+          }
+          {
+            props.mons ? 
+            props.mons.map((mon)=>{
+              return (
+                <Marker
+                  key = {mon.id}
+                  position={mon.location}
+                  options={{
+                    icon: {
+                      url: mon.img,
+                      scaledSize: {width: 32, height: 32},
+                      anchor: {x:16, y:0}
+                    }
+                  }}
+                />
+              )
+              
+            }) : console.log("mons did not load")
           }
           {/*
             selected ? (
