@@ -20,8 +20,10 @@
 }
 
 .home-img {
-	max-width: 80%;
-  height: auto;
+	max-width: 86%;
+  	height: auto;
+  	padding-top: 20%;
+  	padding-left: 7%;
 }
 
 #home-page {
