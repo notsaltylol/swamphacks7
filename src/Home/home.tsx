@@ -7,7 +7,6 @@ import {GetUser, SetUser, CaptureGator} from '../Shared/user.service'
 import firebase from 'firebase/app'
 import GameMap from '../Map/map'
 import { IUser } from '../Shared/user.interface'
-import { IGator } from '../Shared/gator.interface'
 import { FirebaseAppProvider , preloadAuth,preloadFirestore, useFirebaseApp} from 'reactfire';
 import { GetUserList } from '../Shared/user.service'
 
