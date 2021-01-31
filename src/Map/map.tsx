@@ -138,7 +138,13 @@ const GameMap = ()=>{
         >
           <Marker
             position={currentPosition}
-            icon={faStreetView}
+            options={{
+                    icon: {
+                      url: 'Avatar' + Math.ceil(Math.random() * 11 + 1).toString() + '.png',
+                      scaledSize: {width: 32, height: 32},
+                      anchor: {x:16, y:0}
+                    }
+                  }}
           />
           {
 
@@ -147,6 +153,13 @@ const GameMap = ()=>{
                 <Marker 
                   key = {other_player.email}
                   position = { {lat:other_player.currentLocation.lat, lng: other_player.currentLocation.long }}
+                  options={{
+                    icon: {
+                      url: 'Avatar' + Math.ceil(Math.random() * 11 + 1).toString() + '.png',
+                      scaledSize: {width: 32, height: 32},
+                      anchor: {x:16, y:0}
+                    }
+                  }}
                   />
                 )
             })
