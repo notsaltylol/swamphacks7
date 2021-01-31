@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {GoogleMap, LoadScript, Marker, InfoWindow, Data} from '@react-google-maps/api'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faStreetView} from '@fortawesome/free-solid-svg-icons'
 import './map.css'
 import { textSpanEnd } from 'typescript'
 import Navigation from "../Navigation/navigation"
+import { GetUserList } from '../Shared/user.service'
 
 const test_player = {id:0, location: {lat: 29.65, lng: -82.3}}
 const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, location: {lat: 29.6, lng: -82.3}}]
@@ -36,11 +37,20 @@ interface MapProps {
 
 const GameMap = ()=>{
   const [props, setProps] = useState({center: test_player.location, player: test_player, other_players: test_other_players, mons: test_mons});
-  
+
   const [ selected, setSelected ] = useState(null as Mon | null);
   const [ currentPosition, setCurrentPosition ] = useState({lat: 29.6483, lng: -82.3494});
 
-  const action = () =>{
+  const [users, setUsers] = useState([] as IUser[])
+
+  useEffect(() => {
+    const getUsers = async() => {
+      
+    }
+  }, [])
+
+  const action = async () =>{
+    const users = await GetUserList();
     if(getLocation() && currentPosition){
       spawnMon(currentPosition)
     }

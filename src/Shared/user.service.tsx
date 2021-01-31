@@ -5,6 +5,7 @@ import { IUser } from './user.interface';
 import { IGator } from './gator.interface';
 import {GetGators} from './gator.service'
 
+import "firebase/firestore"
 
 export const GetUser =(userid : string)=>{
         // TODO : maybe use useUser() to get the currently logged in user? OR NULL if not logged in??
@@ -13,11 +14,23 @@ export const GetUser =(userid : string)=>{
 }
 
 export const SetUser = async (user: IUser)=>{
-    await useFirestore().collection('users').doc(user.email).set(user, {merge: true})
-    .then((result)=>{
-        console.log("Set user")
-    })
-    
+    const db = firebase.firestore();
+    await db.collection('users').doc(user.email).set(user, {merge: true})
+        .then((result)=>{
+            console.log("Set user")
+        })    
+}
+
+export const GetUserList = async () : Promise<IUser[]> => {
+    const db = firebase.firestore();
+    const users:IUser[] = [];
+    const usersRef = await db.collection('users').get();
+     
+    usersRef.forEach( (user) => {
+        users.push(user.data() as IUser)
+    }) 
+
+     return users;
 }
 
 export const GetUserGators = (user : IUser)=>{

@@ -4,15 +4,16 @@ import Navigation from '../Navigation/navigation'
 import {AuthCheck, useAuth, useFirestore, useFirestoreDocData} from 'reactfire'
 import { Router, useHistory } from 'react-router-dom'
 import { IUser } from '../Shared/user.interface'
-import firebase from 'firebase/app'
+import { SetUser } from '../Shared/user.service'
+
 import "firebase/firestore"
+import firebase from 'firebase/app'
+
 
 function Signup() {
 	const [email, setEmail] = useState("")
 	const [password,setPassword] = useState("")
 	const history = useHistory()
-
-	const db = firebase.firestore();
 
 	const auth = useAuth()
 
@@ -36,13 +37,7 @@ function Signup() {
 		history.push('/Home')
 	}
 
-	const SetUser = async (user: IUser)=>{
-	    await db.collection('users').doc(user.email).set(user, {merge: true})
-		    .then((result)=>{
-		        console.log("Set user")
-		    })
-	    
-	}
+	
 
   return (
     <div className="login-page">

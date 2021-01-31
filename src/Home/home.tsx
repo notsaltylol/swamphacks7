@@ -9,25 +9,13 @@ import GameMap from '../Map/map'
 import { IUser } from '../Shared/user.interface'
 import { IGator } from '../Shared/gator.interface'
 import { FirebaseAppProvider , preloadAuth,preloadFirestore, useFirebaseApp} from 'reactfire';
+import { GetUserList } from '../Shared/user.service'
+
+
 const test_players = {id:0, location: {lat: 29.65, lng: -82.3}}
 const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, location: {lat: 29.6, lng: -82.3}}]
 
 function Home() {
-  
-
-
-  // const {status , data } = GetUser("testuser")
-  // console.log(status)
-  // console.log(data)
-  
-  preloadFirestore({
-    setup: firestore => firestore().enablePersistence(),
-    firebaseApp: useFirebaseApp()
-  });
-
-  preloadAuth({
-    firebaseApp: useFirebaseApp()
-  })
   return (
     <div id="home-page">
     	<Navigation />
