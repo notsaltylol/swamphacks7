@@ -1,0 +1,12 @@
+.carousel-container{
+    background-color: #70af85;
+    height: 600px;
+}
+
+.cimage{
+    object-fit: cover;
+    height: 500px; 
+    width:100%;
+    width: auto;
+    margin: auto;
+  }
