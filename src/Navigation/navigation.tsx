@@ -33,9 +33,11 @@ function Navigation() {
 				  	</li>
 					
 				</AuthCheck>
-		      
 		      <li className="nav-item">
-		        <a className="nav-link" href="">Swamp</a>
+		        <a className="nav-link" href="Map">Map</a>
+		      </li>
+		      <li className="nav-item">
+		        <a className="nav-link" href="Carousel">Swamp</a>
 		      </li>
 		    </ul>
 		  </div>
