@@ -1,7 +1,12 @@
 import React from 'react'
 import './navigation.css'
+import {AuthCheck, FirebaseAppProvider, useAuth} from 'reactfire';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 function Navigation() {
+	const auth = useAuth();
+	
   return (
     <div id="home-page">
 
