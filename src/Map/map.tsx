@@ -67,8 +67,9 @@ const GameMap = ()=>{
       }
     }
     updateMonsters()
+  }, [mons])
 
-  }, [])
+  console.log(mons)
 
   // Set specifc time
   useEffect(() => {
@@ -81,7 +82,7 @@ const GameMap = ()=>{
     return () => {
       clearInterval(interval)
     }
-  }, [mons])
+  }, [])
 
   const action = async () =>{
     if(getLocation() && currentPosition){
@@ -109,8 +110,6 @@ const GameMap = ()=>{
     }
   }
 
-  console.log(mons)
-  
   async function getLocation() {
     navigator.geolocation.getCurrentPosition((position)=>{
       setCurrentPosition({
