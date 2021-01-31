@@ -1,9 +1,11 @@
-
+div.game-map-container {
+    width: 100%;
+    background: #c6ebc9;
+    display: flex;
+    justify-content: center;
+}
 
 .GameMapStyles{
 	height: 600px;
-    margin-right: 3%;
-    padding-right: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    width: 90%;
 }

@@ -41,8 +41,6 @@ function Signup() {
 
   return (
     <div className="login-page">
-    	<Navigation />
-	    
 	    <div className="row">
 	    	<div className="col left">
 	    		<img className="login-img" src="../../login-gator.png" alt="login-gator" />

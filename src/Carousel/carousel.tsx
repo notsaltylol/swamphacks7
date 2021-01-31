@@ -17,7 +17,6 @@ function CarouselComponent(){
     return(
         
         <div>
-            <Navigation />
             Carousel is heree
             <Carousel
                 value={picCount}
