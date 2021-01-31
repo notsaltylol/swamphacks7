@@ -38,7 +38,7 @@ const GameMap = ()=>{
   const [props, setProps] = useState({center: test_player.location, player: test_player, other_players: test_other_players, mons: test_mons});
   
   const [ selected, setSelected ] = useState(null as Mon | null);
-  const [ currentPosition, setCurrentPosition ] = useState(null as Coords | null);
+  const [ currentPosition, setCurrentPosition ] = useState({lat: 29.6483, lng: -82.3494});
 
   const action = () =>{
     if(getLocation() && currentPosition){
@@ -70,9 +70,15 @@ const GameMap = ()=>{
       });
     });
   }
+
   const onSelect = (mon : Mon) => {
     console.log(mon)
     setSelected(mon);
+  }
+
+  const getDistance = (loc1 : Coords, loc2 : Coords) => {
+    console.log(Math.pow(loc1.lat - loc2.lat, 2) + Math.pow(loc2.lng - loc2.lng, 2))
+    return Math.pow(loc1.lat - loc2.lat, 2) + Math.pow(loc1.lng - loc2.lng, 2)
   }
 
   const mapStyles = () => {
@@ -96,7 +102,7 @@ const GameMap = ()=>{
           id='example-map'
           mapContainerStyle={mapStyles()}
           zoom={13}
-          center={props.center}
+          center={currentPosition}
         >
           <Marker
             position={currentPosition}
@@ -121,6 +127,7 @@ const GameMap = ()=>{
                 <Marker
                   key = {mon.id}
                   position={mon.location}
+                  onClick={() => onSelect(mon)}
                   options={{
                     icon: {
                       url: mon.img,
@@ -139,7 +146,11 @@ const GameMap = ()=>{
                 position={selected.location}
                 onCloseClick={() => setSelected(null)}
               >
-                <p>caught</p>
+                {
+                  getDistance(selected.location, currentPosition) < 2e-6?
+                  <button>catch me!</button>:
+                  <div>too far</div>
+                }
               </InfoWindow>
             ) : null
             }
