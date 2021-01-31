@@ -1,15 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './login.css'
 import Navigation from '../Navigation/navigation'
+import {AuthCheck, useAuth, useFirestore, useFirestoreDocData} from 'reactfire'
+import { Router, useHistory } from 'react-router-dom'
+import { IUser } from '../Shared/user.interface'
+import firebase from 'firebase/app'
+import "firebase/firestore"
 
 function Signup() {
+	const [email, setEmail] = useState("")
+	const [password,setPassword] = useState("")
+	const history = useHistory()
+
+	const db = firebase.firestore();
+
+	const auth = useAuth()
+
+	const signUp = async (event:any)=>{
+		event.preventDefault()
+		await auth.createUserWithEmailAndPassword(email, password)
+		console.log(auth.currentUser)
+
+		//save data into database
+		const newuser : IUser = {
+			email: email,
+			currentLocation:{
+				lat:0,
+				long:0
+			},
+			capturedGators:[]
+		}
+		SetUser(newuser)
+
+		//redirect to home page
+		history.push('/Home')
+	}
+
+	const SetUser = async (user: IUser)=>{
+	    await db.collection('users').doc(user.email).set(user, {merge: true})
+		    .then((result)=>{
+		        console.log("Set user")
+		    })
+	    
+	}
+
   return (
     <div className="login-page">
     	<Navigation />
 	    
 	    <div className="row">
 	    	<div className="col left">
-	    		
 	    		<img className="login-img" src="../../login-gator.png" alt="login-gator" />
 	    		<h1 className="login-title">Gator-Mon!</h1>
 	    	</div>
@@ -19,11 +59,15 @@ function Signup() {
 		            <h3>Sign up</h3>
 
 		            <div className="form-group">
-		                <input type="username" className="form-control" placeholder="username" />
+		                <input type="email" className="form-control" placeholder="email" onChange={(event)=> {
+							setEmail(event.target.value)
+						}}/>
 		            </div>
 
-		            <div className="form-group">
-		                <input type="email" className="form-control" placeholder="email" />
+					<div className="form-group">
+		                <input type="password" className="form-control" placeholder="password" onChange={(event)=> {
+							setPassword(event.target.value)
+						}}/>
 		            </div>
 
 		            <div className="form-group">
@@ -32,7 +76,7 @@ function Signup() {
 		                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
 		                </div>
 		            </div>
-		            <button type="submit" className="btn btn-dark btn-lg btn-block">Sign up</button>
+		            <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={signUp}>Sign up</button>
 		        </form>
 
 	    	</div>
