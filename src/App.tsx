@@ -5,7 +5,7 @@ import Login from './Auth/login'
 import Home from './Home/home'
 import GameMap from './Map/map'
 import Signup from './Auth/signup'
-import { FirebaseAppProvider } from 'reactfire';
+import { FirebaseAppProvider , preloadAuth,preloadFirestore, useFirebaseApp} from 'reactfire';
 
 
 const firebaseConfig = {
