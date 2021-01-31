@@ -2,7 +2,7 @@ import React from 'react'
 //import { setUser } from '../Shared/user.service'
 import './home.css'
 import Navigation from '../Navigation/navigation'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Container} from 'react-bootstrap'
 import {GetUser, SetUser, CaptureGator} from '../Shared/user.service'
 import firebase from 'firebase/app'
 import GameMap from '../Map/map'
@@ -18,15 +18,17 @@ const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, l
 function Home() {
   return (
     <div id="home-page">
-	    <Row>
-	    	<Col>
-	    		<h1 className="home-name">Gator-Mon!</h1>
-		    	<h2 className="home-descrip">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h2>
-		    </Col>
-		    <Col>
-		    	<img className="home-img" src="../../gator_cartoon.png" alt="gator_cartoon"></img>
-        </Col>
-	    </Row>
+		<Container>
+			<Row>
+				<Col>
+					<h1 className="home-name">Gator-Mon!</h1>
+					<h2 className="home-descrip">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h2>
+				</Col>
+				<Col>
+					<img className="home-img" src="../../gator_cartoon.png" alt="gator_cartoon"></img>
+				</Col>
+			</Row>
+		</Container>
     </div>
 
   )
