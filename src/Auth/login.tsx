@@ -21,8 +21,6 @@ function Login() {
 
   return (
     <div className="login-page">
-    	<Navigation />
-	    
 	    <div className="row">
 	    	<div className="col left">
 	    		<img className="login-img" src="../../login-gator.png" alt="login-gator" />
@@ -31,32 +29,26 @@ function Login() {
 
 	    	<div className="col right">
 	    		<form className="login-form">
-		            <h3>Log in</h3>
+						<h3>Log in</h3>
 
-		            <div className="form-group">
-		                <input type="email" className="form-control" placeholder="email" onChange={(event)=> {
-							setEmail(event.target.value)
-						}}/>
-		            </div>
-
-					<div className="form-group">
-		                <input type="password" className="form-control" placeholder="password" onChange={(event)=> {
-							setPassword(event.target.value)
-						}}/>
-		            </div>
-
-		            <div className="form-group">
-		                <div className="custom-control custom-checkbox">
-		                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-		                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-		                </div>
-		            </div>
-		            <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={signIn}>Sign in</button>
-		        </form>
-				{/* <button className='login' onClick={signIn}>
-					Sign in via Google
-				</button> */}
-
+						<div className="form-group">
+							<input type="email" className="form-control" placeholder="Email" onChange={(event)=> {
+								setEmail(event.target.value)
+							}}/>
+						</div>
+						<div className="form-group">
+							<input type="password" className="form-control" placeholder="Password" onChange={(event)=> {
+								setPassword(event.target.value)
+							}}/>
+						</div>
+						<div className="form-group">
+							<div className="custom-control custom-checkbox">
+								<input type="checkbox" className="custom-control-input" id="customCheck1" />
+								<label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+							</div>
+						</div>
+						<button type="submit" className="btn btn-dark btn-lg btn-block" onClick={signIn}>Sign in</button>
+					</form>
 	    	</div>
 	    </div>
     </div>

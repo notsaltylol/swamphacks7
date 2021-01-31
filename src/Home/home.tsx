@@ -18,8 +18,6 @@ const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, l
 function Home() {
   return (
     <div id="home-page">
-    	<Navigation />
-
 	    <Row>
 	    	<Col>
 	    		<h1 className="home-name">Gator-Mon!</h1>

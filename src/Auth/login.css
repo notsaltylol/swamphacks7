@@ -38,3 +38,11 @@
 .login-page .row{
 	padding-right: 0;
 }
+
+h3 {
+	text-align: center;
+}
+
+div.form-group {
+	text-align: center;
+}

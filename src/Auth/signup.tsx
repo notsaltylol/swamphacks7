@@ -41,8 +41,6 @@ function Signup() {
 
   return (
     <div className="login-page">
-    	<Navigation />
-	    
 	    <div className="row">
 	    	<div className="col left">
 	    		<img className="login-img" src="../../login-gator.png" alt="login-gator" />
@@ -54,13 +52,13 @@ function Signup() {
 		            <h3>Sign up</h3>
 
 		            <div className="form-group">
-		                <input type="email" className="form-control" placeholder="email" onChange={(event)=> {
+		                <input type="email" className="form-control" placeholder="Email" onChange={(event)=> {
 							setEmail(event.target.value)
 						}}/>
 		            </div>
 
 					<div className="form-group">
-		                <input type="password" className="form-control" placeholder="password" onChange={(event)=> {
+		                <input type="password" className="form-control" placeholder="Password" onChange={(event)=> {
 							setPassword(event.target.value)
 						}}/>
 		            </div>

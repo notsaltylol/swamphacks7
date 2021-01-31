@@ -123,72 +123,78 @@ const GameMap = ()=>{
 
 
   return(
-    <div className="GameMapStyles">
-      <Navigation />
-      <button onClick={action}>get location</button>
-      <LoadScript
-        id="script-loader"
-        googleMapsApiKey='AIzaSyDDzAGhmk2jio6ei6HlRHtKW6MW0lHx6Lc'
-      >
-        <GoogleMap
-          id='example-map'
-          mapContainerStyle={mapStyles()}
-          zoom={13}
-          center={currentPosition}
+    <div className="game-map-container">
+      <div className="GameMapStyles">
+        <button onClick={action}>get location</button>
+        <LoadScript
+          id="script-loader"
+          googleMapsApiKey='AIzaSyDDzAGhmk2jio6ei6HlRHtKW6MW0lHx6Lc'
         >
-          <Marker
-            position={currentPosition}
-            icon={faStreetView}
-          />
-          {
+          <GoogleMap
+            id='example-map'
+            mapContainerStyle={mapStyles()}
+            zoom={13}
+            center={currentPosition}
+          >
+            <Marker
+              position={currentPosition}
+              icon={faStreetView}
+            />
+            {
 
-            users?.map((other_player) => {
-              return(
-                <Marker 
-                  key = {other_player.email}
-                  position = { {lat:other_player.currentLocation.lat, lng: other_player.currentLocation.long }}
+              users?.map((other_player) => {
+                return (
+                  <Marker
+                    key={other_player.email}
+                    position={{ lat: other_player.currentLocation.lat, lng: other_player.currentLocation.long }}
+                    options={{
+                      icon: {
+                        url: 'Avatar' + Math.ceil(Math.random() * 11 + 1).toString() + '.png',
+                        scaledSize: { width: 32, height: 32 },
+                        anchor: { x: 16, y: 0 }
+                      }
+                    }}
                   />
                 )
-            })
-
-          
-          }
-          {
-            props.mons ? 
-            props.mons.map((mon)=>{
-              return (
-                <Marker
-                  key = {mon.id}
-                  position={mon.location}
-                  onClick={() => onSelect(mon)}
-                  options={{
-                    icon: {
-                      url: mon.img,
-                      scaledSize: {width: 32, height: 32},
-                      anchor: {x:16, y:0}
-                    }
-                  }}
-                />
-              )
-              
-            }) : console.log("mons did not load")
-          }
-          {
-            selected ? (
-              <InfoWindow
-                position={selected.location}
-                onCloseClick={() => setSelected(null)}
-              >
-                {
-                  getDistance(selected.location, currentPosition) < 2e-3?
-                  <button>catch me!</button>:
-                  <div>too far</div>
-                }
-              </InfoWindow>
-            ) : null
+              })
             }
-        </GoogleMap>
-      </LoadScript>
+            {
+              props.mons ?
+              props.mons.map((mon)=>{
+                return (
+                  <Marker
+                    key = {mon.id}
+                    position={mon.location}
+                    onClick={() => onSelect(mon)}
+                    options={{
+                      icon: {
+                        url: mon.img,
+                        scaledSize: {width: 32, height: 32},
+                        anchor: {x:16, y:0}
+                      }
+                    }}
+                  />
+                )
+
+              }) : console.log("mons did not load")
+            }
+            {
+              selected ? (
+                <InfoWindow
+                  position={selected.location}
+                  onCloseClick={() => setSelected(null)}
+                >
+                  {
+                    getDistance(selected.location, currentPosition) < 2e-3?
+                    <button>catch me!</button>:
+                    <div>too far</div>
+                  }
+                </InfoWindow>
+              ) : null
+              }
+          </GoogleMap>
+        </LoadScript>
+      </div>
     </div>
       
     )
