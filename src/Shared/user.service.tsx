@@ -7,10 +7,13 @@ import {GetGators} from './gator.service'
 
 import "firebase/firestore"
 
-export const GetUser =(userid : string)=>{
+export const GetUser = async (userEmail : string) : Promise<IUser> =>{
         // TODO : maybe use useUser() to get the currently logged in user? OR NULL if not logged in??
-        const userref = useFirestore().collection('users').doc(userid)
-        return useFirestoreDocData(userref)
+        
+        const db = firebase.firestore();
+        const userref = await db.collection('users').doc(userEmail).get()
+        return userref.data() as IUser
+         
 }
 
 export const SetUser = async (user: IUser)=>{
@@ -19,6 +22,14 @@ export const SetUser = async (user: IUser)=>{
         .then((result)=>{
             console.log("Set user")
         })    
+}
+
+export const UpdateUser = async (user: IUser) => {
+    const db = firebase.firestore();
+    await db.collection('users').doc(user.email).update(user)
+        .then((result)=>{
+            console.log("Set user")
+        }) 
 }
 
 export const GetUserList = async () : Promise<IUser[]> => {

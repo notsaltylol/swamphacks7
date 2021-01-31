@@ -3,16 +3,22 @@ import './login.css'
 import Navigation from '../Navigation/navigation'
 import { auth } from 'reactfire'
 import {useAuth } from 'reactfire'
+import { Router, useHistory } from 'react-router-dom'
 
 function Login() {
 	const [email, setEmail] = useState("")
 	const [password,setPassword] = useState("")
+	const history = useHistory()
 	// const [username, setUsername] = useState("")
 	const auth = useAuth()
 	const signIn = async (event:any)=>{
 		event.preventDefault()
 		await  auth.signInWithEmailAndPassword(email,password)
+
+		history.push("/Home")
 	}
+
+
   return (
     <div className="login-page">
     	<Navigation />

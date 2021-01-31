@@ -5,7 +5,10 @@ import {faStreetView} from '@fortawesome/free-solid-svg-icons'
 import './map.css'
 import { textSpanEnd } from 'typescript'
 import Navigation from "../Navigation/navigation"
-import { GetUserList } from '../Shared/user.service'
+import { GetUserList, GetUser, UpdateUser } from '../Shared/user.service'
+import { IUser } from '../Shared/user.interface'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 const test_player = {id:0, location: {lat: 29.65, lng: -82.3}}
 const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, location: {lat: 29.6, lng: -82.3}}]
@@ -40,17 +43,30 @@ const GameMap = ()=>{
 
   const [ selected, setSelected ] = useState(null as Mon | null);
   const [ currentPosition, setCurrentPosition ] = useState({lat: 29.6483, lng: -82.3494});
-
-  const [users, setUsers] = useState([] as IUser[])
+  const [ users, setUsers] = useState([] as IUser[] )
+  const [ user, setUser] = useState( null as IUser | null)
 
   useEffect(() => {
     const getUsers = async() => {
-      
+      setUsers(await GetUserList()); 
+      const user = firebase.auth().currentUser as IUser | null;
+  
+      if(user){
+        setUser(await GetUser(user.email)) 
+        console.log(await GetUser(user.email))
+      } 
+
     }
+    getUsers();
+    
   }, [])
 
+
+
+  
+
   const action = async () =>{
-    const users = await GetUserList();
+
     if(getLocation() && currentPosition){
       spawnMon(currentPosition)
     }
@@ -78,6 +94,12 @@ const GameMap = ()=>{
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
+
+      if(user){
+        user.currentLocation = {lat: position.coords.latitude, long: position.coords.longitude}
+        UpdateUser(user)
+      }
+
     });
   }
 
@@ -119,16 +141,17 @@ const GameMap = ()=>{
             icon={faStreetView}
           />
           {
-            props.other_players ?
-            props.other_players.map((other_player)=>{
-              return (
-                <Marker
-                  key = {other_player.id}
-                  position={other_player.location}
-                />
-              )
-              
-            }) : console.log("other players did not load")
+
+            users?.map((other_player) => {
+              return(
+                <Marker 
+                  key = {other_player.email}
+                  position = { {lat:other_player.currentLocation.lat, lng: other_player.currentLocation.long }}
+                  />
+                )
+            })
+
+          
           }
           {
             props.mons ? 
@@ -157,7 +180,7 @@ const GameMap = ()=>{
                 onCloseClick={() => setSelected(null)}
               >
                 {
-                  getDistance(selected.location, currentPosition) < 2e-6?
+                  getDistance(selected.location, currentPosition) < 2e-3?
                   <button>catch me!</button>:
                   <div>too far</div>
                 }
