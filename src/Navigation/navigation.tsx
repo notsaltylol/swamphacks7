@@ -29,7 +29,9 @@ function Navigation() {
 					</React.Fragment>
 				}>
 					<li className="nav-item active">
-					<a className="nav-link" href="Home">Logout <span className="sr-only">(current)</span></a>
+					<a className="nav-link" href="Home" onClick={()=>{
+						auth.signOut()
+					}}>Logout <span className="sr-only">(current)</span></a>
 				  	</li>
 					
 				</AuthCheck>
