@@ -45,9 +45,6 @@ function Home() {
 		    	<img className="home-img" src="../../gator_cartoon.png" alt="gator_cartoon"></img>
 		    </div>
 	    </div>
-      <div className="GameMap">
-        <GameMap center={{lat: 29.65, lng: -82.3}} player={test_players} mons = {[]} other_players={test_other_players}/>
-      </div>
     </div>
 
   )
