@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import './login.css'
 import Navigation from '../Navigation/navigation'
-import {AuthCheck, useAuth } from 'reactfire'
+import {AuthCheck, useAuth, useFirestore, useFirestoreDocData} from 'reactfire'
 import { Router, useHistory } from 'react-router-dom'
 import { IUser } from '../Shared/user.interface'
-import { SetUser } from '../Shared/user.service'
+import firebase from 'firebase/app'
+import "firebase/firestore"
 
 function Signup() {
 	const [email, setEmail] = useState("")
 	const [password,setPassword] = useState("")
 	const history = useHistory()
+
+	const db = firebase.firestore();
 
 	const auth = useAuth()
 
@@ -28,10 +31,19 @@ function Signup() {
 			capturedGators:[]
 		}
 		SetUser(newuser)
+
 		//redirect to home page
-		
-		history.push('Home')
+		history.push('/Home')
 	}
+
+	const SetUser = async (user: IUser)=>{
+	    await db.collection('users').doc(user.email).set(user, {merge: true})
+		    .then((result)=>{
+		        console.log("Set user")
+		    })
+	    
+	}
+
   return (
     <div className="login-page">
     	<Navigation />
