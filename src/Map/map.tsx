@@ -94,7 +94,7 @@ const GameMap = ()=>{
   const spawnMon = (reference_coords : Coords) => {
     if (user && mons) {
       const species = 20;
-      const range = 0.02;
+      const range = 0.01;
       var d = new Date()
       var time = d.getTime()
       const newMon: Mon = {
@@ -208,7 +208,7 @@ const GameMap = ()=>{
                   onCloseClick={() => setSelected(null)}
                 >
                   {
-                    getDistance(selected.location, currentPosition) < 2e-3?
+                    getDistance(selected.location, currentPosition) < 2e-5?
                     <Button className="catch-button">catch me!</Button>:
                     <div>too far</div>
                   }
