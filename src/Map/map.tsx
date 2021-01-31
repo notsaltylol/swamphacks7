@@ -3,6 +3,7 @@ import {GoogleMap, LoadScript, Marker, InfoWindow, Data} from '@react-google-map
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faStreetView} from '@fortawesome/free-solid-svg-icons'
 import './map.css'
+import {Button} from 'react-bootstrap'
 import { textSpanEnd } from 'typescript'
 import Navigation from "../Navigation/navigation"
 import { GetUserList, GetUser, UpdateUser } from '../Shared/user.service'
@@ -67,8 +68,9 @@ const GameMap = ()=>{
       }
     }
     updateMonsters()
+  }, [mons])
 
-  }, [])
+  console.log(mons)
 
   // Set specifc time
   useEffect(() => {
@@ -81,7 +83,7 @@ const GameMap = ()=>{
     return () => {
       clearInterval(interval)
     }
-  }, [mons])
+  }, [])
 
   const action = async () =>{
     if(getLocation() && currentPosition){
@@ -92,7 +94,7 @@ const GameMap = ()=>{
   const spawnMon = (reference_coords : Coords) => {
     if (user && mons) {
       const species = 20;
-      const range = 0.02;
+      const range = 0.01;
       var d = new Date()
       var time = d.getTime()
       const newMon: Mon = {
@@ -109,8 +111,6 @@ const GameMap = ()=>{
     }
   }
 
-  console.log(mons)
-  
   async function getLocation() {
     navigator.geolocation.getCurrentPosition((position)=>{
       setCurrentPosition({
@@ -208,8 +208,8 @@ const GameMap = ()=>{
                   onCloseClick={() => setSelected(null)}
                 >
                   {
-                    getDistance(selected.location, currentPosition) < 2e-3?
-                    <button>catch me!</button>:
+                    getDistance(selected.location, currentPosition) < 2e-5?
+                    <Button className="catch-button">catch me!</Button>:
                     <div>too far</div>
                   }
                 </InfoWindow>
