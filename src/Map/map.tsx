@@ -138,13 +138,7 @@ const GameMap = ()=>{
         >
           <Marker
             position={currentPosition}
-            options={{
-                    icon: {
-                      url: 'Avatar' + Math.ceil(Math.random() * 11 + 1).toString() + '.png',
-                      scaledSize: {width: 32, height: 32},
-                      anchor: {x:16, y:0}
-                    }
-                  }}
+            icon={faStreetView}
           />
           {
 
