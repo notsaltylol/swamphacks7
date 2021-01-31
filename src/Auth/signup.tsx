@@ -1,6 +1,7 @@
 import React from 'react'
 import './login.css'
 import Navigation from '../Navigation/navigation'
+import {AuthCheck, useAuth } from 'reactfire'
 
 function Signup() {
   return (

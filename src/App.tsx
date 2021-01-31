@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './Auth/login'
 import Home from './Home/home'
 import Signup from './Auth/signup'
-import { FirebaseAppProvider } from 'reactfire';
+import { FirebaseAppProvider , preloadAuth,preloadFirestore, useFirebaseApp} from 'reactfire';
 
 
 const firebaseConfig = {
