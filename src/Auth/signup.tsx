@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import './login.css'
 import Navigation from '../Navigation/navigation'
 import {AuthCheck, useAuth } from 'reactfire'
+import { Router, useHistory } from 'react-router-dom'
+import { IUser } from '../Shared/user.interface'
+import { SetUser } from '../Shared/user.service'
 
 function Signup() {
 	const [email, setEmail] = useState("")
 	const [password,setPassword] = useState("")
+	const history = useHistory()
 
 	const auth = useAuth()
 
@@ -13,6 +17,20 @@ function Signup() {
 		event.preventDefault()
 		await auth.createUserWithEmailAndPassword(email, password)
 		console.log(auth.currentUser)
+
+		//save data into database
+		const newuser : IUser = {
+			email: email,
+			currentLocation:{
+				lat:0,
+				long:0
+			},
+			capturedGators:[]
+		}
+		SetUser(newuser)
+		//redirect to home page
+		
+		history.push('Home')
 	}
   return (
     <div className="login-page">
