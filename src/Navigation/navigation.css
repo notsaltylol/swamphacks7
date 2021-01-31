@@ -1,3 +1,21 @@
-.navbar{
+@font-face {
+	font-family: Mali;
+	src: url(Mali/Mali-Bold.ttf);
+}
+
+.navbar {
 	background-color: #aa8976;
+
+}
+
+.brand {
+	color: #fbf4dd;
+	font-family: Mali;
+	font-weight: bold;
+	font-size: 1.6rem;
+}
+
+.nav-choice {
+	color: #F0E2D0;
+	font-weight: bold;
 }

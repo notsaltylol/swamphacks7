@@ -8,28 +8,40 @@ function Navigation() {
 	const auth = useAuth();
   return (
     <div id="home-page">
-		<Navbar className="navbar">
-			<Navbar.Brand href="Home">Gator-Mon!</Navbar.Brand>
+
+    	<Navbar className="navbar">
+			<Navbar.Brand href="Home"><span className="brand">Gator-Mon!</span></Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
-				<Nav.Link href="Map">Play</Nav.Link>
-				<Nav.Link href="Carousel">Swamp</Nav.Link>
+				<Nav.Link href="Map">
+					<span className="nav-choice">Play</span>
+				</Nav.Link>
+				<Nav.Link href="Carousel">
+					<span className="nav-choice">Swamp</span>
+				</Nav.Link>
 				<Nav className="mr-auto">
 					<AuthCheck fallback={
 						<React.Fragment>
-							<Nav.Link href="Login">Login</Nav.Link>
-							<Nav.Link href="Signup">Sign Up</Nav.Link>
+							<Nav.Link href="Login">
+								<span className="nav-choice">Login</span>
+							</Nav.Link>
+							<Nav.Link href="Signup">
+								<span className="nav-choice">Sign Up</span>
+							</Nav.Link>
 						</React.Fragment>
 					}>
 						 <Nav.Link href="Home" onClick={()=>{
 						auth.signOut()
-					}}> Logout <span className="sr-only">(current)</span></Nav.Link>
+					}}> <span className="nav-choice">Logout</span> <span className="sr-only">(current)</span></Nav.Link>
 					
 					</AuthCheck>
 				</Nav>	
 			</Navbar.Collapse>
 		</Navbar>
 
+
+
+		
 
 
 
