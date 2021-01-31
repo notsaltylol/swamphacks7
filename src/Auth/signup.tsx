@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './login.css'
 import Navigation from '../Navigation/navigation'
+import {Container, Row, Col} from 'react-bootstrap'
 import {AuthCheck, useAuth, useFirestore, useFirestoreDocData} from 'reactfire'
 import { Router, useHistory } from 'react-router-dom'
 import { IUser } from '../Shared/user.interface'
@@ -41,39 +42,41 @@ function Signup() {
 
   return (
     <div className="login-page">
-	    <div className="row">
-	    	<div className="col left">
-	    		<img className="login-img" src="../../login-gator.png" alt="login-gator" />
-	    		<h1 className="login-title">Gator-Mon!</h1>
-	    	</div>
+		<Container fluid>
+			<div className="row">
+				<div className="col left">
+					<img className="login-img" src="../../login-gator.png" alt="login-gator" />
+					<h1 className="login-title">Gator-Mon!</h1>
+				</div>
 
-	    	<div className="col">
-	    		<form className="login-form">
-		            <h3>Sign up</h3>
+				<div className="col">
+					<form className="login-form">
+						<h3>Sign up</h3>
 
-		            <div className="form-group">
-		                <input type="email" className="form-control" placeholder="Email" onChange={(event)=> {
-							setEmail(event.target.value)
-						}}/>
-		            </div>
+						<div className="form-group">
+							<input type="email" className="form-control" placeholder="Email" onChange={(event)=> {
+								setEmail(event.target.value)
+							}}/>
+						</div>
 
-					<div className="form-group">
-		                <input type="password" className="form-control" placeholder="Password" onChange={(event)=> {
-							setPassword(event.target.value)
-						}}/>
-		            </div>
+						<div className="form-group">
+							<input type="password" className="form-control" placeholder="Password" onChange={(event)=> {
+								setPassword(event.target.value)
+							}}/>
+						</div>
 
-		            <div className="form-group">
-		                <div className="custom-control custom-checkbox">
-		                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-		                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-		                </div>
-		            </div>
-		            <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={signUp}>Sign up</button>
-		        </form>
+						<div className="form-group">
+							<div className="custom-control custom-checkbox">
+								<input type="checkbox" className="custom-control-input" id="customCheck1" />
+								<label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+							</div>
+						</div>
+						<button type="submit" className="btn btn-dark btn-lg btn-block" onClick={signUp}>Sign up</button>
+					</form>
 
-	    	</div>
-	    </div>
+				</div>
+			</div>
+		</Container>
     </div>
 
   )

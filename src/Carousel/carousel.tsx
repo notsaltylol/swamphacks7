@@ -22,7 +22,6 @@ function CarouselComponent(){
     // })
     return(
         <div className="carousel-container">
-            <Navigation />
             {showAll ?
                 <Carousel>
                 {
