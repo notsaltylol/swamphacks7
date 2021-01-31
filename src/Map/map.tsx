@@ -3,6 +3,7 @@ import {GoogleMap, LoadScript, Marker, InfoWindow, Data} from '@react-google-map
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faStreetView} from '@fortawesome/free-solid-svg-icons'
 import './map.css'
+import {Button} from 'react-bootstrap'
 import { textSpanEnd } from 'typescript'
 import Navigation from "../Navigation/navigation"
 import { GetUserList, GetUser, UpdateUser } from '../Shared/user.service'
@@ -209,7 +210,7 @@ const GameMap = ()=>{
                 >
                   {
                     getDistance(selected.location, currentPosition) < 2e-3?
-                    <button>catch me!</button>:
+                    <Button className="catch-button">catch me!</Button>:
                     <div>too far</div>
                   }
                 </InfoWindow>
