@@ -21,7 +21,7 @@ function Home() {
 			<Row>
 				<Col>
 					<h1 className="home-name">Gator-Mon!</h1>
-					<h2 className="home-descrip">Catch the elusive gator-mons!</h2>
+					<h2 className="home-descrip">Befriend the elusive Gator-mons!</h2>
 				</Col>
 				<Col>
 					<img className="home-img" src="../../gator_cartoon.png" alt="gator_cartoon"></img>
