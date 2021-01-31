@@ -9,6 +9,7 @@ import { GetUserList, GetUser, UpdateUser } from '../Shared/user.service'
 import { IUser } from '../Shared/user.interface'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import { GetAllMons, SetMon } from '../Shared/gator.service'
 
 const test_player = {id:0, location: {lat: 29.65, lng: -82.3}}
 const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, location: {lat: 29.6, lng: -82.3}}]
@@ -25,10 +26,11 @@ interface Player {
   location: Coords
 }
 
-interface Mon {
+export interface Mon {
   id : number
   img : string
-  location: Coords
+  location: Coords,
+  spawnUserEmail?: string
 }
 
 interface MapProps {
@@ -39,11 +41,10 @@ interface MapProps {
 }
 
 const GameMap = ()=>{
-  const [props, setProps] = useState({center: test_player.location, player: test_player, other_players: test_other_players, mons: test_mons});
-
   const [ selected, setSelected ] = useState(null as Mon | null);
   const [ currentPosition, setCurrentPosition ] = useState({lat: 29.6483, lng: -82.3494});
   const [ users, setUsers] = useState([] as IUser[] )
+  const [ mons, setMons ] = useState(null as Mon[] | null);
   const [ user, setUser] = useState( null as IUser | null)
 
   useEffect(() => {
@@ -53,40 +54,62 @@ const GameMap = ()=>{
   
       if(user){
         setUser(await GetUser(user.email)) 
-        console.log(await GetUser(user.email))
-      } 
-
+        // console.log(await GetUser(user.email))
+      }
     }
     getUsers();
-    
   }, [])
 
+  useEffect( () => {
+    async function updateMonsters() {
+      if (!mons) {
+        setMons(await GetAllMons())
+      }
+    }
+    updateMonsters()
 
+  }, [])
 
-  
+  // Set specifc time
+  useEffect(() => {
+    async function spawnGatorAndUpdateDistance() {
+      await action()
+    }
+
+    spawnGatorAndUpdateDistance()
+    const interval = setInterval(() => spawnGatorAndUpdateDistance(), 6000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [mons])
 
   const action = async () =>{
-
     if(getLocation() && currentPosition){
       spawnMon(currentPosition)
     }
   }
 
   const spawnMon = (reference_coords : Coords) => {
-    const species = 20;
-    const range = 0.02;
-    var d = new Date()
-    var time = d.getTime()
-    const newMon : Mon = {id: time, 
-      img: 'gator' + Math.ceil(Math.random() * species).toString() + '.png',
-      location:{
-        lat: reference_coords?.lat + Math.random()*range - range/2,
-        lng: reference_coords?.lng + Math.random()*range - range/2
+    if (user && mons) {
+      const species = 20;
+      const range = 0.02;
+      var d = new Date()
+      var time = d.getTime()
+      const newMon: Mon = {
+        id: time,
+        img: 'gator' + Math.ceil(Math.random() * species).toString() + '.png',
+        location: {
+          lat: reference_coords?.lat + Math.random() * range - range / 2,
+          lng: reference_coords?.lng + Math.random() * range - range / 2
+        },
+        spawnUserEmail: user.email
       }
+      SetMon(newMon)
+      setMons([...mons, newMon])
     }
-    props.mons.push(newMon)
-    setProps(props);
   }
+
+  console.log(mons)
   
   async function getLocation() {
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -159,8 +182,8 @@ const GameMap = ()=>{
               })
             }
             {
-              props.mons ?
-              props.mons.map((mon)=>{
+              mons ?
+              mons.map((mon)=>{
                 return (
                   <Marker
                     key = {mon.id}

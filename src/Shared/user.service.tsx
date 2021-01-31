@@ -2,7 +2,6 @@ import React from 'react';
 import firebase from 'firebase/app'
 import {useFirestore, useFirestoreDocData} from 'reactfire'
 import { IUser } from './user.interface';
-import { IGator } from './gator.interface';
 import {GetGators} from './gator.service'
 
 import "firebase/firestore"
