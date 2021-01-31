@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './login.css'
 import Navigation from '../Navigation/navigation'
 import {AuthCheck, useAuth } from 'reactfire'
 
 function Signup() {
+	const [email, setEmail] = useState("")
+	const [password,setPassword] = useState("")
+
+	const auth = useAuth()
+
+	const signUp = async (event:any)=>{
+		event.preventDefault()
+		await auth.createUserWithEmailAndPassword(email, password)
+		console.log(auth.currentUser)
+	}
   return (
     <div className="login-page">
     	<Navigation />
@@ -20,11 +30,15 @@ function Signup() {
 		            <h3>Sign up</h3>
 
 		            <div className="form-group">
-		                <input type="username" className="form-control" placeholder="username" />
+		                <input type="email" className="form-control" placeholder="email" onChange={(event)=> {
+							setEmail(event.target.value)
+						}}/>
 		            </div>
 
-		            <div className="form-group">
-		                <input type="email" className="form-control" placeholder="email" />
+					<div className="form-group">
+		                <input type="password" className="form-control" placeholder="password" onChange={(event)=> {
+							setPassword(event.target.value)
+						}}/>
 		            </div>
 
 		            <div className="form-group">
@@ -33,7 +47,7 @@ function Signup() {
 		                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
 		                </div>
 		            </div>
-		            <button type="submit" className="btn btn-dark btn-lg btn-block">Sign up</button>
+		            <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={signUp}>Sign up</button>
 		        </form>
 
 	    	</div>
