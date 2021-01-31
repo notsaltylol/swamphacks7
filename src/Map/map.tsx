@@ -148,7 +148,7 @@ const GameMap = ()=>{
   return(
     <div className="game-map-container">
       <div className="GameMapStyles">
-        <button onClick={action}>get location</button>
+        {/*<button onClick={action}>get location</button>*/}
         <LoadScript
           id="script-loader"
           googleMapsApiKey='AIzaSyDDzAGhmk2jio6ei6HlRHtKW6MW0lHx6Lc'

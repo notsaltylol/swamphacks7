@@ -21,6 +21,7 @@
 
 .home-img {
 	max-width: 86%;
+	min-width: 50%;
   	height: auto;
   	padding-top: 20%;
   	padding-left: 7%;
@@ -29,4 +30,8 @@
 #home-page {
 	background-color: #c6ebc9;
 
+}
+
+.btn-outline-success{
+	margin-left: 10%;
 }
