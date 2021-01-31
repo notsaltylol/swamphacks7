@@ -5,7 +5,10 @@ import Login from './Auth/login'
 import Home from './Home/home'
 import GameMap from './Map/map'
 import Signup from './Auth/signup'
-import { FirebaseAppProvider , preloadAuth,preloadFirestore, useFirebaseApp} from 'reactfire';
+
+import { FirebaseAppProvider } from 'reactfire';
+import CarouselComponent from './Carousel/carousel';
+
 
 
 const firebaseConfig = {
@@ -31,6 +34,7 @@ function App() {
           <Route path='/login' component={Login}/>
           <Route path='/map' component={GameMap}/>
           <Route path='/signup' component={Signup}/>
+          <Route path='/carousel' component={CarouselComponent}/>
           <Route path='/' component={Home}/>
         </Switch>
       </BrowserRouter>

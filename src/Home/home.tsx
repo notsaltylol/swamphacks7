@@ -2,13 +2,14 @@ import React from 'react'
 //import { setUser } from '../Shared/user.service'
 import './home.css'
 import Navigation from '../Navigation/navigation'
-//import firebase from 'firebase/app'
-//import {useFirestore} from 'reactfire'
-import './home.css'
 import {GetUser, SetUser, CaptureGator} from '../Shared/user.service'
+<<<<<<< HEAD
 // import firebase from 'firebase/app'
 
 // import {useFirestore} from 'reactfire'
+=======
+import firebase from 'firebase/app'
+>>>>>>> carousel
 import GameMap from '../Map/map'
 import { IUser } from '../Shared/user.interface'
 import { IGator } from '../Shared/gator.interface'
@@ -19,6 +20,7 @@ const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, l
 function Home() {
   
 
+<<<<<<< HEAD
 
   // const {status , data } = GetUser("testuser")
   // console.log(status)
@@ -32,6 +34,8 @@ function Home() {
   preloadAuth({
     firebaseApp: useFirebaseApp()
   })
+=======
+>>>>>>> carousel
   return (
     <div id="home-page">
     	<Navigation />

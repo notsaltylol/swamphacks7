@@ -7,8 +7,6 @@ function Navigation() {
 	const auth = useAuth();
   return (
     <div id="home-page">
-
-
     	<nav className="navbar navbar-expand-lg navbar-light bg-light">
 		  <a className="navbar-brand" href="Home">Gator-Mon!</a>
 		  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
