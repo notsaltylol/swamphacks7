@@ -36,29 +36,27 @@ interface MapProps {
 const GameMap = ()=>{
   const [props, setProps] = useState({center: test_player.location, player: test_player, other_players: test_other_players, mons: test_mons});
   
-  const [ selected, setSelected ] = useState({});
-  const [ currentPosition, setCurrentPosition ] = useState<Coords>(test_player.location);
+  const [ selected, setSelected ] = useState(null as Mon | null);
+  const [ currentPosition, setCurrentPosition ] = useState(null as Coords | null);
 
   const action = () =>{
-    if(getLocation()){
+    if(getLocation() && currentPosition){
       spawnMon(currentPosition)
     }
   }
 
   const spawnMon = (reference_coords : Coords) => {
-    const species = 2;
+    const species = 20;
     const range = 0.02;
     var d = new Date()
     var time = d.getTime()
     const newMon : Mon = {id: time, 
       img: 'gator' + Math.ceil(Math.random() * species).toString() + '.png',
       location:{
-        lat: reference_coords.lat + Math.random()*range - range/2,
-        lng: reference_coords.lng + Math.random()*range - range/2
+        lat: reference_coords?.lat + Math.random()*range - range/2,
+        lng: reference_coords?.lng + Math.random()*range - range/2
       }
     }
-    console.log(newMon.location.lat - currentPosition.lat)
-    console.log(newMon.location.lng - currentPosition.lng)
     props.mons.push(newMon)
     setProps(props);
   }
@@ -133,16 +131,16 @@ const GameMap = ()=>{
               
             }) : console.log("mons did not load")
           }
-          {/*
+          {
             selected ? (
               <InfoWindow
-                position={test_player.location}
-                onCloseClick={() => setSelected({})}
+                position={selected.location}
+                onCloseClick={() => setSelected(null)}
               >
-                Caught!
+                <p>caught</p>
               </InfoWindow>
             ) : null
-            */}
+            }
         </GoogleMap>
       </LoadScript>
     </div>
