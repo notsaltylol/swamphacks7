@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faStreetView} from '@fortawesome/free-solid-svg-icons'
 import './map.css'
 import { textSpanEnd } from 'typescript'
+import Navigation from "../Navigation/navigation"
 
 const test_player = {id:0, location: {lat: 29.65, lng: -82.3}}
 const test_other_players = [{id:1, location: {lat: 29.7, lng: -82.3}}, {id: 2, location: {lat: 29.6, lng: -82.3}}]
@@ -87,6 +88,7 @@ const GameMap = ()=>{
 
   return(
     <div className="GameMapStyles">
+      <Navigation />
       <button onClick={action}>get location</button>
       <LoadScript
         id="script-loader"
