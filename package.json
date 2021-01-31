@@ -20,6 +20,7 @@
     "bootstrap": "^4.6.0",
     "firebase": "^8.2.5",
     "react": "0.0.0-experimental-27659559e",
+    "react-bootstrap": "^1.4.3",
     "react-dom": "0.0.0-experimental-27659559e",
     "react-google-maps": "^9.4.5",
     "react-router": "^5.2.0",

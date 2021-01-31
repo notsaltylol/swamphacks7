@@ -2,6 +2,7 @@ import React from 'react'
 //import { setUser } from '../Shared/user.service'
 import './home.css'
 import Navigation from '../Navigation/navigation'
+import {Row, Col} from 'react-bootstrap'
 import {GetUser, SetUser, CaptureGator} from '../Shared/user.service'
 import firebase from 'firebase/app'
 import GameMap from '../Map/map'
@@ -31,15 +32,15 @@ function Home() {
     <div id="home-page">
     	<Navigation />
 
-	    <div className="row">
-	    	<div className="col">
+	    <Row>
+	    	<Col>
 	    		<h1 className="home-name">Gator-Mon!</h1>
 		    	<h2 className="home-descrip">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h2>
-		    </div>
-		    <div className='col'>
+		    </Col>
+		    <Col>
 		    	<img className="home-img" src="../../gator_cartoon.png" alt="gator_cartoon"></img>
-        </div>
-	    </div>
+        </Col>
+	    </Row>
     </div>
 
   )
